@@ -62,3 +62,5 @@ tests/coverage.txt
 !Caddyfile
 caddy/
 !docker/conf/caddy
+
+course/

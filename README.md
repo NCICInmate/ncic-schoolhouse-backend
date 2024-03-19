@@ -1,104 +1,47 @@
-# Escola LMS
-
-Laravel Headless LMS REST API.
-
-[![swagger](https://img.shields.io/badge/documentation-swagger-green)](https://escola-lms-api.stage.etd24.pl/api/documentation)
-[![phpunit](https://github.com/EscolaLMS/API/actions/workflows/phpunit-tests.yml/badge.svg)](https://github.com/EscolaLMS/API/actions/workflows/phpunit-tests.yml)
-[![downloads](https://img.shields.io/packagist/dt/escolalms/api)](https://packagist.org/packages/escolalms/api)
-[![downloads](https://img.shields.io/packagist/v/escolalms/api)](https://packagist.org/packages/escolalms/api)
-[![downloads](https://img.shields.io/packagist/l/escolalms/api)](https://packagist.org/packages/escolalms/api)
-[![Maintainability](https://api.codeclimate.com/v1/badges/68b4fbde49bcd465e482/maintainability)](https://codeclimate.com/github/EscolaLMS/API/maintainability)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FEscolaLMS%2FAPI.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FEscolaLMS%2FAPI?ref=badge_shield)
-
-## Packages
-
-List of all packages is available at [packagist.org/?query=escolalms](https://packagist.org/?query=escolalms).
-
-![Packages](https://github.com/EscolaLMS/.github/raw/main/deptrac-modules.png "Wellms Packages")
-
-## Tests
-
-Just run `phpunit` to test all the packages.
-
-Summary code coverage from all the packages:
-
-[![cc](https://raw.githubusercontent.com/EscolaLMS/.github/main/api-tests/cc-badge.svg)](https://github.com/EscolaLMS/API/actions/workflows/phpunit-cc.yml)
-[![Tests Code Coverage](https://github.com/EscolaLMS/API/actions/workflows/phpunit-cc.yml/badge.svg)](https://github.com/EscolaLMS/API/actions/workflows/phpunit-cc.yml)
-[![cc](https://raw.githubusercontent.com/EscolaLMS/.github/main/api-tests/cc-tests.svg)](https://github.com/EscolaLMS/API/actions/workflows/phpunit-cc.yml)
-[![cc](https://raw.githubusercontent.com/EscolaLMS/.github/main/api-tests/cc-assertions.svg)](https://github.com/EscolaLMS/API/actions/workflows/phpunit-cc.yml)
+# NCIC Schoolhouse 2.0 Backend
 
 ## Installation
-
-You should consider install with our [installation package](https://docs.wellms.io/getting-started/guide.html).
-
-To install default docker environment either clone this repo or use
-
-```bash
-composer create-project escolallms/api escola-lms
+Start by cloning the repository 
+```
+git clone https://github.com/Marshall-Smith0/ncic-schoolhouse-backend.git
 ```
 
-### Postgres (default)
-
-```sh
-make init
+Copy .env.example to .env 
+```
+cp .env.example .env
 ```
 
-### Mysql
-
+Start up the Docker container
 ```
-make init-mysql
+docker-compose up -d
+```
+If you change anything with `.env` 
+```
+docker-compose down
 ```
 
-## Demo & Credentials
+From here you will have to be working within the docker container for each of the commands. You do this by adding `docker-compose exec escola_lms_app bash -c` before each of the commands.
 
-| Role    | Email ID              | Password |
-| ------- | --------------------- | -------- |
-| Admin   | admin@escolalms.com   | secret   |
-| Tutor   | tutor@escolalms.com   | secret   |
-| Student | student@escolalms.com | secret   |
+Install the composer files
+```
+docker-compose exec escola_lms_app bash -c "composer install"
+```
 
-## Demo
+Run a fresh migration and then seed the database
+```
+docker-compose exec escola_lms_app bash -c "php artisan migrate:fresh --seed"
+```
 
-[https://api-stage.escolalms.com/api/documentation](https://api-stage.escolalms.com/api/documentation)
+#### Any time you run `docker-compose down` you will need to re-run these commands 
 
-This is fully working demo. **Note** that content is regenerated every day - it's a seeder that is not persistent, every day database and files are cleared and rebuilt from skratch.
+#### If you are going to use the from the seeder and would like to view this information then you will need to set up the Postgres database. 
 
-## Test
+### Postgres Databse
+There are two ways of viewing the Postgres database: 
 
-There are hundreds of tests in the packages and they are divided into:
+The first is using `adminer-1`. This is one of the ports that is opened up within the docker container. This will open up a screen where you put in the information for the Postgres DB found in the `.env` file. 
 
-### Integration packages test
-
-Each packge contains their own php integration test this repo runs all of the
-
-To run use `./vendor/bin/phpunit`
-
-### End-to-end tests
-
-[Cypress.io](https://docs.cypress.io/) is running end-to-end tests
-
-To launch those use `yarn && yarn run cypress open`
-
-You can see the results in the [cypress dashboard](https://dashboard.cypress.io/projects/kmx5cw/runs) including video artifacts
-
-## Tasks
-
-See [makefile](makefile) for all available devops tasks
-
-- `make test-phpunit`
-- `make bash`
-- `make composer-update`
-- `make swagger-generate`
-- `make migrate-fresh`
-- `make switch-to-postgres`
-- `make switch-to-mysql`
-- `make migrate-mysql`
-- `make migrate-postgres`
-- `make test-phpunit-postgres`
-- `make test-phpunit-mysql`
-- `make init`
-- `make init-mysql`
-- `make init-postgres`
+The second way is using pgAdmin.
 
 ## License
 
