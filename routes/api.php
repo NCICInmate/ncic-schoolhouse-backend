@@ -4,6 +4,7 @@ use App\Http\Controllers\EventAPIController;
 use EscolaLms\Consultations\Enum\ConsultationTermStatusEnum;
 use EscolaLms\Consultations\Models\ConsultationUserPivot;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LearnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
+/***************************************************************************************
+ ** Learners
+ ***************************************************************************************/
+Route::get('/getLearner/{learner}', 'LearnerController@getLearner');
+Route::post('/updateLearner/{learner}', 'LearnerController@updateLearner');
+
+/***************************************************************************************
+ ** Built-in API
+ ***************************************************************************************/
 Route::get('domain', function () {
     return env('APP_NAME');
 });
