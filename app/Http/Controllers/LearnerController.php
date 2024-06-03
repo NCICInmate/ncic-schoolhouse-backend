@@ -15,7 +15,6 @@ class LearnerController extends Controller
 
     public function updateLearner(Request $request, Learner $learner)
     {
-        logger($request);
         $learner->update($request->all());
         return new LearnerResource($learner);
     }
