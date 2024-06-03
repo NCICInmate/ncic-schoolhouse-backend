@@ -1,4 +1,4 @@
-version: "3.5"
+# version: "3.5"
 networks:
   escola_lms:
     name: escola_lms
@@ -68,7 +68,6 @@ services:
       - escola_lms
     image: "redis"
     command: "redis-server --requirepass ${REDIS_PASSWORD}"
-
 
   # Uncomment if you want to use reportbro
   #
