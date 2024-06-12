@@ -2,24 +2,33 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contracts\LearnerRepositoryContract;
 use App\Repositories\Contracts\SearchableEventRepositoryContract;
+use App\Repositories\LearnerRepository;
 use App\Repositories\SearchableEventRepository;
+use App\Services\AuthService;
 use App\Services\ConsultationService;
+use App\Services\Contracts\AuthServiceContract;
 use App\Services\Contracts\ConsultationServiceContract;
 use App\Services\Contracts\SearchableEventServiceContract;
 use App\Services\SearchableEventService;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Contracts\LearnerServiceContract;
+use App\Services\LearnerService;
 
 class AppServiceProvider extends ServiceProvider
 {
     public const SERVICES = [
+        AuthServiceContract::class => AuthService::class,
+        LearnerServiceContract::class => LearnerService::class,
         SearchableEventServiceContract::class => SearchableEventService::class,
         ConsultationServiceContract::class => ConsultationService::class,
     ];
 
     public const REPOSITORIES = [
+        LearnerRepositoryContract::class => LearnerRepository::class,
         SearchableEventRepositoryContract::class => SearchableEventRepository::class,
     ];
 

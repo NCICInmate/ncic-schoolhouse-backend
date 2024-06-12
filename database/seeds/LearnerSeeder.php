@@ -19,6 +19,8 @@ class LearnerSeeder extends Seeder
         DB::table('learners')->insert([
             'first_name' => 'John',
             'last_name' => 'Smith',
+            'learner_id' => 'johnsmith',
+            'password' => 'secret123',
             'uuid' => Str::uuid(),
             'created_at' => now(),
             'updated_at' => now(),

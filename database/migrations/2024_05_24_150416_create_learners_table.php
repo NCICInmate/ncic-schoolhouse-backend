@@ -19,6 +19,9 @@ return new class extends Migration
 
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('learner_id')->unique();
+            $table->string('password');
+
             $table->mediumText('motivation')->nullable();
             $table->date('release_date')->nullable();
             $table->longText('accomplishments')->nullable();
