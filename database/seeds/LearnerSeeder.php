@@ -19,12 +19,15 @@ class LearnerSeeder extends Seeder
         DB::table('learners')->insert([
             'first_name' => 'John',
             'last_name' => 'Smith',
+            'learner_id' => 'johnsmith',
+            'password' => 'secret123',
             'uuid' => Str::uuid(),
             'created_at' => now(),
             'updated_at' => now(),
             'motivation' => Str::random(15),
             'release_date' => date('2024-09-01'),
             'accomplishments' => Str::random(20),
+            'facility_id' => Str::uuid(),
         ]);
     }
 }

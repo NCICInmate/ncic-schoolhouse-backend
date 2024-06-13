@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventAPIController;
-use EscolaLms\Consultations\Enum\ConsultationTermStatusEnum;
-use EscolaLms\Consultations\Models\ConsultationUserPivot;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LearnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +19,11 @@ use App\Http\Controllers\LearnerController;
  ***************************************************************************************/
 Route::get('/getLearner/{learner}', 'LearnerController@getLearner');
 Route::post('/updateLearner/{learner}', 'LearnerController@updateLearner');
+
+/***************************************************************************************
+ ** Login
+ ***************************************************************************************/
+Route::post('auth/login', 'LoginController@login');
 
 /***************************************************************************************
  ** Built-in API

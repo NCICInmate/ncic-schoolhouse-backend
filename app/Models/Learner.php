@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
-class Learner extends Model
+class Learner extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
     protected $table = 'learners';
 
@@ -28,5 +29,11 @@ class Learner extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
+    ];
+
+    public const PASSWORD_RULES = [
+        'required',
+        'string',
+        'min:6'
     ];
 }
