@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LearnerLoginRequest;
+use App\Http\Resources\LoginResource;
+use App\Http\Controllers\BaseController;
+use App\Models\Learner;
 use App\Services\Contracts\AuthServiceContract;
 use App\Services\Contracts\LearnerServiceContract;
-use EscolaLms\Auth\Http\Resources\LoginResource;
-
-use EscolaLms\Core\Http\Controllers\EscolaLmsBaseController;
 use Illuminate\Http\JsonResponse;
 use Exception;
 
-class LoginController extends EscolaLmsBaseController
+class LoginController extends BaseController
 {
     private AuthServiceContract $authService;
     private LearnerServiceContract $learnerService;
@@ -24,6 +24,11 @@ class LoginController extends EscolaLmsBaseController
 
     public function login(LearnerLoginRequest $request): JsonResponse
     {
+        $learnerCheck = Learner::where('learner_id', $request->input('learner_id'))->first();
+        if (!$learnerCheck) {
+            return new JsonResponse(['message' => 'Learner not found'], 404);
+        }
+
         try {
             $learner = $this->learnerService->login(
                 $request->input('learner_id'),

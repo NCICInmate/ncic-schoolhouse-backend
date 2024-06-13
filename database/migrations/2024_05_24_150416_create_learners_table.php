@@ -25,6 +25,8 @@ return new class extends Migration
             $table->mediumText('motivation')->nullable();
             $table->date('release_date')->nullable();
             $table->longText('accomplishments')->nullable();
+
+            $table->uuid('facility_id');
         });
     }
 

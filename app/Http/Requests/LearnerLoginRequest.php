@@ -12,7 +12,9 @@ class LearnerLoginRequest extends ExtendableRequest
         return [
             'learner_id' => ['required', 'string', 'max:255'],
             'password' => Learner::PASSWORD_RULES,
-            'remember_me' => ['boolean'],
+            'first_name' => ['string', 'max:255'],
+            'last_name' => ['string', 'max:255'],
+            'facility_id' => ['string', 'max:255'],
         ];
     }
 }

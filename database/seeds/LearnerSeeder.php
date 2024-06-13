@@ -27,6 +27,7 @@ class LearnerSeeder extends Seeder
             'motivation' => Str::random(15),
             'release_date' => date('2024-09-01'),
             'accomplishments' => Str::random(20),
+            'facility_id' => Str::uuid(),
         ]);
     }
 }
