@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'api',
-        'passwords' => 'users',
+        'passwords' => 'learner',
     ],
 
     /*
@@ -38,12 +38,17 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'learners',
         ],
 
         'api' => [
             'driver' => 'passport',
-            'provider' => 'users',
+            'provider' => 'learners',
+        ],
+
+        'api-learner' => [
+            'driver' => 'passport',
+            'provider' => 'learner',
         ],
     ],
 
@@ -65,9 +70,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'learners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Learner::class,
         ],
 
         'learners' => [
@@ -97,8 +102,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'learner' => [
+            'provider' => 'learners',
             'table' => 'password_resets',
             'expire' => 60,
         ],

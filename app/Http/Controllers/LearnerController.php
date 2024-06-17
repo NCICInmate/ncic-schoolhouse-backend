@@ -18,4 +18,9 @@ class LearnerController extends Controller
         $learner->update($request->all());
         return new LearnerResource($learner);
     }
+
+    public function getAuthLearner()
+    {
+        return new LearnerResource(auth()->user());
+    }
 }
