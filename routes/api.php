@@ -18,12 +18,18 @@ use Illuminate\Support\Facades\Route;
  ** Learners
  ***************************************************************************************/
 Route::get('/getLearner/{learner}', 'LearnerController@getLearner');
+Route::get('/getAuthLearner', 'LearnerController@getAuthLearner');
 Route::post('/updateLearner/{learner}', 'LearnerController@updateLearner');
 
 /***************************************************************************************
  ** Login
  ***************************************************************************************/
 Route::post('auth/login', 'LoginController@login');
+
+/***************************************************************************************
+ ** Logout
+ ***************************************************************************************/
+Route::post('auth/logout', 'LogoutController@logout');
 
 /***************************************************************************************
  ** Built-in API
