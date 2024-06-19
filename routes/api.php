@@ -32,6 +32,13 @@ Route::post('auth/login', 'LoginController@login');
 Route::post('auth/logout', 'LogoutController@logout');
 
 /***************************************************************************************
+ ** Scorm
+ ***************************************************************************************/
+Route::get('admin/scorm', 'ScormController@getScorm');
+Route::get('admin/scorm/scos', 'ScormController@getScos');
+Route::get('scorm/play/{uuid}', 'ScormController@play');
+
+/***************************************************************************************
  ** Built-in API
  ***************************************************************************************/
 Route::get('domain', function () {

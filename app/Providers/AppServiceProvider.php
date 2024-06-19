@@ -16,7 +16,9 @@ use Illuminate\Database\SQLiteConnection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Contracts\LearnerServiceContract;
+use App\Services\Contracts\ScormServiceContract;
 use App\Services\LearnerService;
+use App\Services\ScormService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         LearnerServiceContract::class => LearnerService::class,
         SearchableEventServiceContract::class => SearchableEventService::class,
         ConsultationServiceContract::class => ConsultationService::class,
+        ScormServiceContract::class => ScormService::class,
     ];
 
     public const REPOSITORIES = [
