@@ -101,6 +101,7 @@
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.13",
+    "barryvdh/laravel-ide-helper": "^2.15",
     "fakerphp/faker": "^1.9.1",
     "filp/whoops": "^2.0",
     "mockery/mockery": "^1.0",
